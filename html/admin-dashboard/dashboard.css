@@ -1,0 +1,101 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+:root {
+  --primary-color: hsl(228, 31%, 28%);
+  --primary-color-light: rgb(18, 146, 238);
+  --primary-color-light-2: rgb(134, 203, 252);
+  --secondary-color: hsl(209, 75%, 39%);
+  --accent-color: hsl(210, 40%, 96%, 81%);
+  --accent-color-1: hsl(210, 40%, 96%, 100%);
+  --background-color: hsl(0, 0%, 100%);
+
+  --neutral-soft-red: hsl(0, 68%, 56%);
+  --neutral-soft-brown: hsl(284, 3%, 34%);
+  --neutral-soft-white: hsl(0, 0, 88%);
+  --neutral-soft-grey: hsl(0, 0%, 93%);
+  --neutral-soft-green: hsl(113, 69%, 37%);
+  --neutral-soft-green-1: hsl(111, 82%, 31%);
+  --neutral-soft-pink: hsl(319, 61%, 85%, 60%);
+}
+.side-container {
+  background-color: #EEF5FF;
+  width: 15%;
+  height: 97vh;
+  border-radius: 0.5rem;
+  margin: 1rem 0 1rem 1rem;
+}
+.logo {
+  padding: 1rem 0 0 1rem;
+  color: var(--primary-color);
+  font-family: 'bricolage grotesque', sans-serif;
+}
+.dashboard {
+  display: flex;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+}
+.dashboard img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.dashboard p {
+  margin-top: 0.3rem;
+  padding-left: 0.5rem;
+  color: var(--background-color);
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.dashboard-container {
+  padding: 1rem;
+}
+.store-management {
+  padding-left: 1rem;
+  margin-top: 2rem;
+}
+.store-management p {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.product img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.product p, .categories p, .orders p, .customer p, .review p {
+  color: var(--primary-color);
+  padding-top: 0.2rem;
+  padding-left: 0.7rem;
+  font-weight: bold;
+  font-family: 'bricolage grotesque', sans-serif;
+}
+.product, .categories, .orders, .customer, .review {
+  display: flex;
+  margin-top: 2rem;
+  margin-left: 1rem;
+}

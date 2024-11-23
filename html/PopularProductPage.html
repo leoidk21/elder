@@ -40,12 +40,35 @@
               Login / Signup
             </a>
           </div>
-          <div class="cart">
-            <img src="../assets/cart-icon.png" alt="" class="cart-icon">
-            <a href="" class="cart_link">
-              Cart
-            </a>
+          
+          <div class="cart-icon-container">
+            <div class="cart">
+              <a href="/html/CartPage.html" class="cart">
+                <img src="/assets/cart-icon.png" alt="" class="cart-icon">
+              </a>
+              <span class="cart-count">0</span>
+              <a href="#" class="cart_link">Cart</a>
+            </div>
+
+            <div class="cart-dropdown">
+              <div class="cart-items">
+                <p class="cart-empty">No products yet</p>
+                <p class="recently-added"></p>
+              
+                <div class="cart-item">
+                  <img src="#" alt="product-name" class="cart-item-image">
+                  <div class="cart-item-details">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="cart-footer">
+                <a href="/html/CartPage.html" class="view-cart">View Cart</a>
+              </div>
+            </div>
           </div>
+
+
           <div class="menu">
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
               <i class="fa fa-bars"></i>
@@ -60,9 +83,11 @@
         <ul>
           <div class="close-menu">
             <a href="javascript:void(0);" class="icon" onclick="CloseFunction()">
-               <i class="fa fa-times"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#313A5E">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+              </svg>
             </a>
-         </div>
+          </div>
          <h1 class="nav-sidebar-logo">Elder Living</h1>
           <div class="sidebar-search-container">
             <input 
@@ -76,13 +101,36 @@
               alt="Search Icon" 
               class="search-icon">
           </div>
-
-          <li><a class="nav-link" href="#">Home</a></li>
-          <li><a class="nav-link" href="#">Articles</a></li>
-          <li><a class="nav-link" href="#">About us</a></li>
-          <li><a class="nav-link" href="#">Contact</a></li>
-          <li><a class="nav-link" href="#">Categories</a></li>
-          <li><a class="nav-link" href="#">Account</a></li>
+          <li>
+            <a class="nav-link" href="/html/LandingPage.html">
+              Home
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/html/ArticlesPage.html">
+              Articles
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/html/AboutPage.html">
+              About us
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/html/ContactPage.html">
+              Contact
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/html/CategoryPage.html">
+              Categories
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/html/AccountPage.html">
+              Account
+            </a>
+          </li>
         </ul>
       </nav>
       <div class="navbar-border"></div>
@@ -356,31 +404,25 @@
   
       <div class="footer-section account-info">
         <h2 class="section-title">Account</h2>
-        <a href="#" class="account-link">My Account</a>
-        <a href="#" class="account-link">Login / Signup</a>
-        <a href="#" class="account-link">Your Cart</a>
-        <a href="#" class="account-link">Your Order</a>
-        <a href="#" class="account-link">Shop</a>
+        <a href="/html/user-account/AccountPage.html" class="account-link">My Account</a>
+        <a href="/html/Login.html" class="account-link">Login / Signup</a>
+        <a href="/html/CartPage.html" class="account-link">Your Cart</a>
+        <a href="/html/user-account/PurchasePage.html" class="account-link">Your Order</a>
+        <a href="/html/LandingPage.html" class="account-link">Shop</a>
       </div>
   
       <div class="footer-section quick-links">
         <h2 class="section-title">Quick Links</h2>
-        <a href="#" class="quick-link-item">FAQ</a>
-        <a href="#" class="quick-link-item">Contact</a>
-        <a href="#" class="quick-link-item">About Us</a>
-        <a href="#" class="quick-link-item">Home</a>
-        <a href="#" class="quick-link-item">Articles</a>
+        <a href="/html/AboutPage.html" class="quick-link-item">FAQ</a>
+        <a href="/html/ContactPage.html" class="quick-link-item">Contact</a>
+        <a href="/html/AboutPage.html" class="quick-link-item">About Us</a>
+        <a href="/html/LandingPage.html" class="quick-link-item">Home</a>
+        <a href="/html/ArticlesPage.html" class="quick-link-item">Articles</a>
       </div>
   
       <div class="footer-section payment-social">
         <h2 class="section-title">Payment Method</h2>
-        <img src="../assets/gcash.png" alt="Gcash" class="payment-image">
-        <h2 class="section-title">Follow Us</h2>
-        <div class="social-icons">
-          <img src="../assets/twitter.png" alt="Twitter">
-          <img src="../assets/fb.png" alt="Facebook">
-          <img src="../assets/insta.png" alt="Instagram">
-        </div>
+        <img src="/assets/paypal.png" alt="Gcash" class="payment-image">
       </div>
     </div>
     
@@ -407,5 +449,52 @@ function CloseFunction() {
         x.className += " closed";
     }
 }
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalUniqueItems = cart.length;
+
+  const cartCountElement = document.querySelector('.cart-count');
+  cartCountElement.textContent = totalUniqueItems;
+  cartCountElement.style.display = totalUniqueItems > 0 ? 'flex' : 'none'; 
+}
+
+function updateCartDropdown() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartItemsContainer = document.querySelector('.cart-items');
+  const viewCartLink = document.querySelector('.cart-footer');  
+  cartItemsContainer.innerHTML = ''; 
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = '<p class="empty-message">Your cart is empty.</p>';
+    viewCartLink.style.display = 'none'; 
+  } else {
+    const recentlyAddedText = document.createElement('p');
+    recentlyAddedText.className = 'recently-added-text';
+    recentlyAddedText.textContent = 'Recently Added';
+    cartItemsContainer.appendChild(recentlyAddedText);
+
+    cart.forEach(item => {
+      const formattedPrice = item.price ? `₱ ${item.price.toLocaleString()}` : '₱ 0.00';
+
+      const cartItemElement = document.createElement('div');
+      cartItemElement.className = 'cart-item';
+      cartItemElement.innerHTML = `
+        <img src="${item.image || 'default-image-url'}" alt="${item.name || 'Unnamed Product'}" class="cart-item-image">
+        <div class="cart-item-details">
+          <span class="cart-item-name">${item.name || 'Unnamed Product'}</span>
+          <span class="cart-item-price">${formattedPrice}</span> 
+        </div>
+      `;
+      cartItemsContainer.appendChild(cartItemElement);
+    });
+    viewCartLink.style.display = 'block';
+  }
+}
+
+window.addEventListener('load', () => {
+  updateCartCount();
+  updateCartDropdown();
+});
 </script>
 </html>
